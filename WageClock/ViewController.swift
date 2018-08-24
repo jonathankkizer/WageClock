@@ -17,9 +17,23 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var salaryTextField: UITextField!
     @IBOutlet weak var outputTableView: UITableView!
     
+    // GLOBAL VARIABLES STRUCT
     struct globalVars {
         
         static var workDayArray: [WorkDay] = []
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadWorkDayArray()
+        outputTableView.reloadData()
+        var salaryText = "\(UserDefaults.standard.data(forKey: "salaryKey"))"
+        if salaryText == "nil" {
+            salaryText = "1.0"
+            salaryTextField.text = salaryText
+        } else {
+            salaryTextField.text = salaryText
+        }
         
     }
     
@@ -33,6 +47,7 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // HIDE KEYBOARD CODE
         hideKeyboardWhenTappedAround()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,10 +62,13 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "clockCell", for: indexPath) as! ClockTableViewCell
-        //cell.clockInTime.text = "\(globalVars.workDayArray[indexPath.row].firstClockIn)"
+        
+        cell.clockInTime.text = returnTime(dateObject: globalVars.workDayArray[indexPath.row].firstClockIn)
         cell.hourlyWage.text = "\(globalVars.workDayArray[indexPath.row].dayHourlyWage)"
         cell.date.text = "\(globalVars.workDayArray[indexPath.row].workDate)"
-        // cell.clockOutTime.text = "\(globalVars.workDayArray[indexPath.row].finalClockOut)"
+        
+        
+        cell.clockOutTime.text = returnTime(dateObject: globalVars.workDayArray[indexPath.row].finalClockOut)
         cell.selectionStyle = .none
         
         return cell
@@ -71,6 +89,8 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.present(self.alertController!, animated: true, completion:nil)
         } else {
             
+            UserDefaults.standard.set(Float(salaryTextField.text!), forKey: "salaryKey")
+            
             for i in globalVars.workDayArray {
                 print(i.secsWorked)
             }
@@ -88,13 +108,16 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let clockInTimeDate = dateFormatter.string(from: clockInTime)
             for workDay in globalVars.workDayArray {
                 if workDay.workDate == clockInTimeDate {
-                    print("HELLO NEW YORK")
+                    print("Current day as same as most recent Work Day")
+                    workDay.yearlySalary = Float("\(salaryTextField.text!)")!
                 } else {
                     let floatYearlySalary = Float("\(salaryTextField.text!)")
                     let newWorkDayObj = WorkDay(clockIn: clockInTime, yearlySalary: floatYearlySalary!)
                     globalVars.workDayArray.append(newWorkDayObj)
                 }
             }
+            
+            saveWorkDayArray(workDayArray: globalVars.workDayArray)
             
         }
         
@@ -118,7 +141,32 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
+        saveWorkDayArray(workDayArray: globalVars.workDayArray)
         outputTableView.reloadData()
+    }
+    
+    func returnTime(dateObject: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        let timeReturn = dateFormatter.string(from: dateObject)
+        
+        return timeReturn
+    }
+    
+    func saveWorkDayArray(workDayArray: [WorkDay]) {
+        if let encoded = try? JSONEncoder().encode(workDayArray) {
+            UserDefaults.standard.set(encoded, forKey: "currentWorkDayArray")
+            print("Saved data...")
+        }
+    }
+    
+    func loadWorkDayArray() {
+        
+        if let userData = UserDefaults.standard.data(forKey: "currentWorkDayArray"),
+            let testArray = try? JSONDecoder().decode([WorkDay].self, from: userData) {
+            globalVars.workDayArray = testArray
+            print("Loaded data...")
+        }
     }
 }
 

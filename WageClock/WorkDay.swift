@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WorkDay {
+class WorkDay: NSObject, Codable {
     
     var firstClockIn: Date
     var finalClockOut: Date

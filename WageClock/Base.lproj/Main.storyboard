@@ -175,23 +175,36 @@
             </objects>
             <point key="canvasLocation" x="-144.80000000000001" y="309.89505247376314"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="Jc4-Wn-YbZ">
             <objects>
-                <viewController id="eod-2S-sZ8" sceneMemberID="viewController">
+                <viewController id="eod-2S-sZ8" customClass="SettingsViewController" customModule="WageClock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CXU-f4-KgK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PLACEHOLDER " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpj-1H-T7t">
-                                <rect key="frame" x="128" y="323" width="119" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROTOTYPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpj-1H-T7t">
+                                <rect key="frame" x="139" y="323" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLp-bn-GDj">
+                                <rect key="frame" x="118" y="243" width="138" height="30"/>
+                                <state key="normal" title="Clear WorkDayArray"/>
+                                <connections>
+                                    <action selector="clearButton:" destination="eod-2S-sZ8" eventType="touchUpInside" id="fJ5-e6-Tbm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QLp-bn-GDj" firstAttribute="top" secondItem="EEC-Wk-YI1" secondAttribute="top" constant="179" id="8bW-ro-bqK"/>
+                            <constraint firstItem="QLp-bn-GDj" firstAttribute="centerX" secondItem="CXU-f4-KgK" secondAttribute="centerX" id="Ajm-fb-JAO"/>
+                            <constraint firstItem="tpj-1H-T7t" firstAttribute="centerY" secondItem="CXU-f4-KgK" secondAttribute="centerY" id="PWN-E8-li9"/>
+                            <constraint firstItem="QLp-bn-GDj" firstAttribute="leading" secondItem="EEC-Wk-YI1" secondAttribute="leading" constant="118" id="UnZ-gQ-R42"/>
+                            <constraint firstItem="QLp-bn-GDj" firstAttribute="centerX" secondItem="tpj-1H-T7t" secondAttribute="centerX" id="j4z-r5-OMR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EEC-Wk-YI1"/>
                     </view>
                 </viewController>

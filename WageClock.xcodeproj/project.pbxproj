@@ -14,6 +14,7 @@
 		AB323093212A5EB600CC59A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB323092212A5EB600CC59A8 /* Assets.xcassets */; };
 		AB323096212A5EB600CC59A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB323094212A5EB600CC59A8 /* LaunchScreen.storyboard */; };
 		AB32309E212A633400CC59A8 /* ClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */; };
+		AB887D07212FABA600A42AF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB887D06212FABA600A42AF6 /* SettingsViewController.swift */; };
 		ABAFEE40212E3EF5001747FE /* WorkDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFEE3F212E3EF5001747FE /* WorkDay.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		AB323095212A5EB600CC59A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB323097212A5EB600CC59A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTableViewCell.swift; sourceTree = "<group>"; };
+		AB887D06212FABA600A42AF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ABAFEE3F212E3EF5001747FE /* WorkDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 				AB32308A212A5EB400CC59A8 /* ViewController.swift */,
 				ABAFEE3F212E3EF5001747FE /* WorkDay.swift */,
 				AB32308C212A5EB400CC59A8 /* Main.storyboard */,
+				AB887D06212FABA600A42AF6 /* SettingsViewController.swift */,
 				AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */,
 				AB323092212A5EB600CC59A8 /* Assets.xcassets */,
 				AB323094212A5EB600CC59A8 /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				ABAFEE40212E3EF5001747FE /* WorkDay.swift in Sources */,
 				AB32309E212A633400CC59A8 /* ClockTableViewCell.swift in Sources */,
 				AB323091212A5EB400CC59A8 /* WageClock.xcdatamodeld in Sources */,
+				AB887D07212FABA600A42AF6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
