@@ -24,10 +24,11 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         loadWorkDayArray()
         outputTableView.reloadData()
-        var salaryText = "\(UserDefaults.standard.data(forKey: "salaryKey"))"
+        var salaryText = "\(UserDefaults.standard.float(forKey: "salaryKey"))"
         if salaryText == "nil" {
             salaryText = "1.0"
             salaryTextField.text = salaryText
@@ -75,6 +76,7 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // CLOCK IN BUTTON CODE
     @IBAction func clockIn(_ sender: Any) {
         
         if salaryTextField.text! == "" {
@@ -125,6 +127,7 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // CLOCK OUT BUTTON CODE
     @IBAction func clockOut(_ sender: Any) {
         let clockOutTime = Date()
         
@@ -145,6 +148,7 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         outputTableView.reloadData()
     }
     
+    // RETURNS FORMATTED TIME AS STRING FROM DATE OBJECT
     func returnTime(dateObject: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
@@ -153,6 +157,7 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return timeReturn
     }
     
+    // SAVES WORK DAY ARRAY TO USERDEFAULTS() BY ENCODING AS JSON OBJECT
     func saveWorkDayArray(workDayArray: [WorkDay]) {
         if let encoded = try? JSONEncoder().encode(workDayArray) {
             UserDefaults.standard.set(encoded, forKey: "currentWorkDayArray")
@@ -160,8 +165,8 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    // LOADS WORKDAYARRAY FROM USERDEFAULTS
     func loadWorkDayArray() {
-        
         if let userData = UserDefaults.standard.data(forKey: "currentWorkDayArray"),
             let testArray = try? JSONDecoder().decode([WorkDay].self, from: userData) {
             globalVars.workDayArray = testArray
