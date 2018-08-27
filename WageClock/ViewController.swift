@@ -7,15 +7,17 @@
 //
 
 import UIKit
+import Charts
 
-class clockViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class clockViewController: UIViewController {
+    
+    // INITIALIZE UI ELEMENTS
+    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var salaryTextField: UITextField!
     
     // ALERT & HAPTIC FEEDBACK INITIALIZERS
     var alertController:UIAlertController? = nil
     let notificationImpact = UINotificationFeedbackGenerator()
-    
-    @IBOutlet weak var salaryTextField: UITextField!
-    @IBOutlet weak var outputTableView: UITableView!
     
     // GLOBAL VARIABLES STRUCT
     struct globalVars {
@@ -27,7 +29,6 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         loadWorkDayArray()
-        outputTableView.reloadData()
         var salaryText = "\(UserDefaults.standard.float(forKey: "salaryKey"))"
         if salaryText == "nil" {
             salaryText = "1.0"
@@ -36,15 +37,14 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
             salaryTextField.text = salaryText
         }
         
+        barChartUpdate()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        outputTableView.dataSource = self
-        outputTableView.delegate = self
-        outputTableView.rowHeight = 125
         
         // HIDE KEYBOARD CODE
         hideKeyboardWhenTappedAround()
@@ -56,24 +56,62 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return globalVars.workDayArray.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "clockCell", for: indexPath) as! ClockTableViewCell
+    // CONFIGURE BARCHARTVIEW DATA AND UPDATE CHART VIEW
+    func barChartUpdate() {
+        var xValue = 1.0
+        var barEntryArray: [BarChartDataEntry] = []
+        for item in globalVars.workDayArray {
+            let barChartEntry = BarChartDataEntry(x:  xValue, y: Double(item.dayHourlyWage))
+            xValue += 1.0
+            barEntryArray.append(barChartEntry)
+        }
         
-        cell.clockInTime.text = returnTime(dateObject: globalVars.workDayArray[indexPath.row].firstClockIn)
-        cell.hourlyWage.text = "\(globalVars.workDayArray[indexPath.row].dayHourlyWage)"
-        cell.date.text = "\(globalVars.workDayArray[indexPath.row].workDate)"
+        // DATA FORMATTING
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.locale = Locale.current
+        let dataformatter = DefaultValueFormatter(formatter: numberFormatter)
+        let axisFormatter = DefaultAxisValueFormatter(formatter: numberFormatter)
+        
+        // ADDING TO CHART DATA SET
+        let barChartDataSet = BarChartDataSet(values: barEntryArray, label: "Hourly Wage by Day")
+        barChartDataSet.valueFormatter = dataformatter
+        barChartDataSet.colors = [UIColor(red:0.07, green:0.32, blue:0.64, alpha:1.0)]
+        barChartDataSet.highlightColor = UIColor(red:0.07, green:0.32, blue:0.64, alpha:1.0)
+        barChartDataSet.drawValuesEnabled = false
+        let barChartData = BarChartData(dataSets: [barChartDataSet])
+        
+        barChartView.data = barChartData
+        
+        // VISUAL CONFIGURATION
+        barChartView.leftAxis.valueFormatter = axisFormatter
+        barChartView.chartDescription?.text = ""
+        barChartView.xAxis.enabled = false
+        barChartView.rightAxis.enabled = false
+        
+        barChartView.xAxis.drawGridLinesEnabled = false
+        barChartView.leftAxis.drawGridLinesEnabled = false
+        barChartView.xAxis.drawGridLinesEnabled = false
+        
+        barChartView.legend.enabled = false
+        
+        barChartView.leftAxis.labelTextColor = UIColor(red:0.07, green:0.32, blue:0.64, alpha:1.0)
+        barChartView.drawValueAboveBarEnabled = true
+        barChartView.leftAxis.labelFont = UIFont.systemFont(ofSize: 16)
+        
+        // SCROLLING BEHAVIOR
+        // need to configure so that it scrolls; also make sure that the view is not zoomed in and the width of the bars is smaller
         
         
-        cell.clockOutTime.text = returnTime(dateObject: globalVars.workDayArray[indexPath.row].finalClockOut)
-        cell.selectionStyle = .none
+        barChartView.backgroundColor = UIColor(red:1.00, green:0.83, blue:0.39, alpha:1.0)
         
-        return cell
         
+        
+        
+        
+        
+        barChartView.notifyDataSetChanged()
     }
     
     // CLOCK IN BUTTON CODE
@@ -123,8 +161,6 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }
         
-        outputTableView.reloadData()
-        
     }
     
     // CLOCK OUT BUTTON CODE
@@ -145,7 +181,8 @@ class clockViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         saveWorkDayArray(workDayArray: globalVars.workDayArray)
-        outputTableView.reloadData()
+        
+        barChartUpdate()
     }
     
     // RETURNS FORMATTED TIME AS STRING FROM DATE OBJECT

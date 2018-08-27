@@ -6,7 +6,7 @@
 //  Copyright © 2018 Kizer Co. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 
 class ClockTableViewCell: UITableViewCell {
 
@@ -28,3 +28,4 @@ class ClockTableViewCell: UITableViewCell {
     }
 
 }
+*/

@@ -16,9 +16,14 @@
 		AB32309E212A633400CC59A8 /* ClockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */; };
 		AB887D07212FABA600A42AF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB887D06212FABA600A42AF6 /* SettingsViewController.swift */; };
 		ABAFEE40212E3EF5001747FE /* WorkDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAFEE3F212E3EF5001747FE /* WorkDay.swift */; };
+		ABFA250321339E9100B523C9 /* workDayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA250221339E9100B523C9 /* workDayTableViewController.swift */; };
+		E73B52DCD01286E0157423BC /* Pods_WageClock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F833D1044F23EF24E4108F0 /* Pods_WageClock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F833D1044F23EF24E4108F0 /* Pods_WageClock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WageClock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EAD31F26598A5FF76AB005E /* Pods-WageClock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WageClock.release.xcconfig"; path = "Pods/Target Support Files/Pods-WageClock/Pods-WageClock.release.xcconfig"; sourceTree = "<group>"; };
+		A699FFEA1F016A0C3BE0CFF3 /* Pods-WageClock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WageClock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WageClock/Pods-WageClock.debug.xcconfig"; sourceTree = "<group>"; };
 		AB323085212A5EB400CC59A8 /* WageClock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WageClock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB323088212A5EB400CC59A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB32308A212A5EB400CC59A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +35,7 @@
 		AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTableViewCell.swift; sourceTree = "<group>"; };
 		AB887D06212FABA600A42AF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ABAFEE3F212E3EF5001747FE /* WorkDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDay.swift; sourceTree = "<group>"; };
+		ABFA250221339E9100B523C9 /* workDayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workDayTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +43,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E73B52DCD01286E0157423BC /* Pods_WageClock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AAF983AA3CF78866CFF13F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F833D1044F23EF24E4108F0 /* Pods_WageClock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB32307C212A5EB400CC59A8 = {
 			isa = PBXGroup;
 			children = (
 				AB323087212A5EB400CC59A8 /* WageClock */,
 				AB323086212A5EB400CC59A8 /* Products */,
+				FFECCC3D2E064A8CCC54D128 /* Pods */,
+				2AAF983AA3CF78866CFF13F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +83,7 @@
 				AB32308A212A5EB400CC59A8 /* ViewController.swift */,
 				ABAFEE3F212E3EF5001747FE /* WorkDay.swift */,
 				AB32308C212A5EB400CC59A8 /* Main.storyboard */,
+				ABFA250221339E9100B523C9 /* workDayTableViewController.swift */,
 				AB887D06212FABA600A42AF6 /* SettingsViewController.swift */,
 				AB32309D212A633400CC59A8 /* ClockTableViewCell.swift */,
 				AB323092212A5EB600CC59A8 /* Assets.xcassets */,
@@ -76,6 +94,15 @@
 			path = WageClock;
 			sourceTree = "<group>";
 		};
+		FFECCC3D2E064A8CCC54D128 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A699FFEA1F016A0C3BE0CFF3 /* Pods-WageClock.debug.xcconfig */,
+				9EAD31F26598A5FF76AB005E /* Pods-WageClock.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB32309A212A5EB600CC59A8 /* Build configuration list for PBXNativeTarget "WageClock" */;
 			buildPhases = (
+				62EE2FC3A1D1FB942D5BF3E0 /* [CP] Check Pods Manifest.lock */,
 				AB323081212A5EB400CC59A8 /* Sources */,
 				AB323082212A5EB400CC59A8 /* Frameworks */,
 				AB323083212A5EB400CC59A8 /* Resources */,
+				7C5787C4B1A726445F8DB9DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -142,6 +171,45 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		62EE2FC3A1D1FB942D5BF3E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WageClock-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C5787C4B1A726445F8DB9DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WageClock/Pods-WageClock-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WageClock/Pods-WageClock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB323081212A5EB400CC59A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -152,6 +220,7 @@
 				ABAFEE40212E3EF5001747FE /* WorkDay.swift in Sources */,
 				AB32309E212A633400CC59A8 /* ClockTableViewCell.swift in Sources */,
 				AB323091212A5EB400CC59A8 /* WageClock.xcdatamodeld in Sources */,
+				ABFA250321339E9100B523C9 /* workDayTableViewController.swift in Sources */,
 				AB887D07212FABA600A42AF6 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +363,7 @@
 		};
 		AB32309B212A5EB600CC59A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A699FFEA1F016A0C3BE0CFF3 /* Pods-WageClock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,6 +382,7 @@
 		};
 		AB32309C212A5EB600CC59A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EAD31F26598A5FF76AB005E /* Pods-WageClock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
